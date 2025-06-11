@@ -6,6 +6,8 @@
 # Creamos interfaces de LAN
 /interface list
 add name=LAN
+/interface list member
+add interface=ether3 list=LAN
 #
 # Creamos tablas de enrutamiento para cada interfaz de WAN
 /routing table
@@ -67,6 +69,8 @@ add disabled=no distance=1 dst-address=10.1.0.0/16 gateway=10.0.3.2 target-scope
 add disabled=no distance=1 dst-address=10.2.0.0/16 gateway=10.0.3.2 target-scope=10
 add disabled=no distance=1 dst-address=10.3.0.0/16 gateway=10.0.3.2 target-scope=10
 #
+add check-gateway=ping disabled=no distance=1 dst-address=0.0.0.0/0 gateway=4.2.2.1 routing-table=Ruta_Ether1 target-scope=11
+add check-gateway=ping disabled=no distance=1 dst-address=0.0.0.0/0 gateway=4.2.2.2 routing-table=Ruta_Ether2 target-scope=11
 #
 # Reglas de enrutamiento, para que puedas acceder si tienes ips publicas por ambas ips
 /routing rule
